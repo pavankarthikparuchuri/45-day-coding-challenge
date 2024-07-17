@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i = 0,j = 0;
+        while(i<nums.size()){
+            while(i<nums.size() && !nums[i]){
+                i++;
+            }
+            if(i<nums.size()){
+                nums[j++] = nums[i];
+            }
+            i++;
+        }
+        for(int i = j;i<nums.size();i++){
+            nums[i] = 0;
+        }
+    }
+};
+
+// Question Link:- https://leetcode.com/problems/move-zeroes/submissions/1323726973/
