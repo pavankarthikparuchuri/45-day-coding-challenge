@@ -1,0 +1,13 @@
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+    //code
+        sort(a.begin(),a.end());
+        long long ans = INT_MAX;
+        int high = a.size()-1, low = a.size()- m;
+        while(low>=0){
+            ans = fmin(ans, a[high] - a[low]);
+            low--;
+            high--;
+        }
+        return ans;
+    } 
+    // QuestionLink:- https://www.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
