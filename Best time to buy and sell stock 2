@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int helper(int ind,int buy,vector<int>&prices, vector<vector<int>>&dp){
+        if(ind >= prices.size())return 0;
+        if(dp[ind][buy]!=-1) return dp[ind][buy];
+        if(buy){
+            return dp[ind][buy] = fmax(-prices[ind]+helper(ind+1, !buy,prices, dp), helper(ind+1, buy,prices, dp));
+        } 
+        return dp[ind][buy] = fmax(prices[ind] + helper(ind+1, !buy, prices,dp), helper(ind+1, buy, prices,dp));
+    }
+    int maxProfit(vector<int>& prices) {
+        //1 Buying
+        //0 Selling
+        vector<vector<int>>dp(prices.size()+1, vector<int>(2,-1));
+        return helper(0,1,prices, dp);
+    }
+};
+
+// Question Link:- https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/1324135534/
