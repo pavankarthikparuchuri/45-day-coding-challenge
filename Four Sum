@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        if(nums.size() < 4) return {};
+        sort(nums.begin(), nums.end());
+        set<vector<int>>ans;
+        for(int i = 0;i<nums.size();i++){
+            for(int j = i+1;j<nums.size();j++){
+                unordered_map<long long int,int>mpp;
+                for(int k = j+1;k<nums.size();k++){
+                    long long int temp = (long long int)target - (long long int)nums[i] - (long long int)nums[j] - (long long int)nums[k];
+                    if(mpp.find(temp)!=mpp.end()){
+                        ans.insert({nums[i], nums[j], target - nums[i] - nums[j] - nums[k], nums[k]});
+                    } else {
+                        mpp[nums[k]] = k;
+                    }
+                }
+            }
+        }
+        vector<vector<int>>ans1;
+        for(auto it:ans){
+            ans1.push_back(it);
+        }
+        return ans1;
+    }
+};
+
+// Question Link:- https://leetcode.com/problems/4sum/
