@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        int up = 0,down = matrix.size()-1,left = 0,right = matrix[0].size()-1;
+        vector<int>ans;
+        int n = matrix.size(), m = matrix[0].size();
+        while(ans.size() < n * m){
+            for(int j = left;j<=right && ans.size() < n * m;j++){
+                ans.push_back(matrix[up][j]);
+            }
+            for(int i = up+1;i<=down && ans.size() < n * m;i++){
+                ans.push_back(matrix[i][right]);
+            }
+            for(int j = right-1;j>=left && ans.size() < n * m;j--){
+                ans.push_back(matrix[down][j]);
+            }
+            for(int i = down-1;i>up && ans.size() < n * m;i--){
+                ans.push_back(matrix[i][left]);
+            }
+            up++; down--;left++;right--;
+        }
+        return ans;
+    }
+};
+
+// QuestionLink:- https://leetcode.com/problems/spiral-matrix/
