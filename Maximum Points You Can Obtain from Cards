@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxScore(vector<int>& cardPoints, int k) {
+        int total = 0, windowSum = 0, n = cardPoints.size();
+        for(int i = 0;i<n;i++){
+            if(i<n-k)windowSum+=cardPoints[i];
+            total+=cardPoints[i];
+        }
+        int maxi = total-windowSum,j = 0;
+        for(int i = n-k;i<n;i++){
+            windowSum+=cardPoints[i];
+            windowSum-=cardPoints[j++];
+            maxi = fmax(maxi, total-windowSum);
+        }
+        return maxi;
+    }
+};
+
+// Question Link:-https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
