@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int,int>mpp;
+        for(auto it: nums){
+            mpp[it]++;
+            if(mpp[it]>=(double)nums.size()/(double)2.0) return it;
+        }
+        return 0;
+    }
+};
+
+// Question Link:- https://leetcode.com/problems/majority-element/submissions/1326480386/
