@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int dx[4] = {1,-1,0,0},dy[4] = {0,0,1,-1};
+    set<pair<int,int>>st;
+    bool helper(int i, int j, int k, string word, vector<vector<char>>&board){
+        st.insert({i,j});
+        if(k>=word.size()){
+            return true;
+        }
+        for(int l = 0; l<4; l++){
+            int nx = dx[l] + i,ny = dy[l] + j;
+            if(nx>=0 && ny>=0 && nx < board.size() && ny < board[0].size() && word[k]  == board[nx][ny] && st.find({nx,ny}) == st.end() && helper(nx,ny, k+1,word, board)){
+                return true;           
+            }
+        }
+        st.erase({i,j});
+        return false;
+    }
+    bool exist(vector<vector<char>>& board, string word) {
+        for(int i = 0;i<board.size();i++){
+            for(int j = 0;j<board[0].size();j++){
+                if(board[i][j] == word[0] && helper(i,j,1, word, board)){
+                    return true;
+                }
+                st.clear();
+            }
+        }
+        return false;
+    }
+};
+
+
+// QuestionLink:-https://leetcode.com/problems/word-search/
